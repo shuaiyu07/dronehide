@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+uploads/maps/*
+uploads/plugins/*
+!uploads/maps/.gitkeep
+!uploads/plugins/.gitkeep
+server/uploads/maps/*
+server/uploads/plugins/*
+!server/uploads/maps/.gitkeep
+!server/uploads/plugins/.gitkeep
+!server/uploads/plugins/default-basic-pack/
+!server/uploads/plugins/default-basic-pack/**
+.dev.log
+.runtime/
+tools/

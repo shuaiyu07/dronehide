@@ -1,0 +1,35 @@
+{
+  "id": "default-basic-pack",
+  "name": "平台默认基础资源包",
+  "version": "1.0.0",
+  "author": "Drone Hide Platform",
+  "license": "项目自制基础几何体",
+  "description": "不依赖外部模型的默认回退资源。角色使用 Three.js 胶囊几何体，地图区域使用基础圆形标记。",
+  "builtIn": true,
+  "assets": [
+    {
+      "id": "seeker-capsule",
+      "label": "寻找者默认角色",
+      "kind": "model",
+      "fallback": true
+    },
+    {
+      "id": "hider-capsule",
+      "label": "躲藏者默认角色",
+      "kind": "model",
+      "fallback": true
+    },
+    {
+      "id": "spawn-marker",
+      "label": "出生点标记",
+      "kind": "marker",
+      "fallback": true
+    },
+    {
+      "id": "zone-marker",
+      "label": "躲藏区与禁区标记",
+      "kind": "marker",
+      "fallback": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+
+> drone-hide-platform@0.1.0 dev
+> concurrently -k -n client,server -c cyan,magenta "npm run dev --workspace client" "npm run dev --workspace server"
+
+[client] 
+[client] > drone-hide-platform-client@0.1.0 dev
+[client] > vite --host 0.0.0.0
+[client] 
+[server] 
+[server] > drone-hide-platform-server@0.1.0 dev
+[server] > tsx watch src/index.ts
+[server] 
+[client] 
+[client]   [32m[1mVITE[22m v7.3.6[39m  [2mready in [0m[1m261[22m[2m[0m ms[22m
+[client] 
+[client]   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5180[22m/[39m
+[client]   [32m➜[39m  [1mNetwork[22m: [36mhttp://26.54.41.200:[1m5180[22m/[39m
+[client]   [32m➜[39m  [1mNetwork[22m: [36mhttp://172.18.34.173:[1m5180[22m/[39m
+[client]   [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.179.1:[1m5180[22m/[39m
+[client]   [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.253.1:[1m5180[22m/[39m
+[client]   [32m➜[39m  [1mNetwork[22m: [36mhttp://172.18.200.29:[1m5180[22m/[39m
+[server] Drone Hide API listening on http://localhost:3001
+[client] [2m16:56:53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx[22m
+[client] [2m16:56:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx[22m
+[client] [2m16:57:33[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx[22m
+[client] [2m16:57:33[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx[22m

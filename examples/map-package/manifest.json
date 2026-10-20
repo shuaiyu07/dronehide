@@ -1,0 +1,16 @@
+{
+  "kind": "map",
+  "schemaVersion": "1.0",
+  "id": "example-map-package",
+  "name": "示例地图包",
+  "version": "1.0.0",
+  "author": "Drone Hide Platform",
+  "license": "CC0 1.0 Universal",
+  "description": "用于测试地图包导入流程的示例清单",
+  "sourceFormats": ["glb"],
+  "runtimeFormat": "glb",
+  "scene": { "path": "scene.glb", "format": "glb" },
+  "collision": { "path": "collision.glb", "format": "glb" },
+  "thumbnail": { "path": "thumbnail.png", "format": "png" },
+  "provenanceType": "open-source"
+}

@@ -1,0 +1,32 @@
+{
+  "kind": "game-resources",
+  "schemaVersion": "1.0",
+  "id": "example-resource-package",
+  "name": "示例游戏资源包",
+  "version": "1.0.0",
+  "author": "Drone Hide Platform",
+  "license": "CC0 1.0 Universal",
+  "description": "用于测试角色、道具和音效接入流程的示例清单",
+  "sourceFormats": ["fbx", "wav", "png"],
+  "runtimeFormats": ["glb", "audio", "image"],
+  "assets": [
+    {
+      "id": "seeker-model",
+      "label": "寻找者角色",
+      "kind": "character",
+      "path": "seeker.glb",
+      "format": "glb",
+      "sourceFormat": "fbx",
+      "fallback": false
+    },
+    {
+      "id": "hider-model",
+      "label": "躲藏者角色",
+      "kind": "character",
+      "path": "hider.glb",
+      "format": "glb",
+      "sourceFormat": "fbx",
+      "fallback": false
+    }
+  ]
+}

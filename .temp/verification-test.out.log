@@ -1,0 +1,28 @@
+
+> drone-hide-platform@0.1.0 test
+> node --import tsx --test server/src/store.test.ts server/src/socket.test.ts
+
+▶ Socket.IO bomb and player lifecycle
+  ✔ reload conserves ammo over real socket and timer (2274.4907ms)
+  ✔ other players cannot interrupt or replace the defuser (140.5913ms)
+  ✔ defuser movement cancels and allows another defender to start (61.3813ms)
+  ✔ planted bomb remains live when all attackers leave (5014.0892ms)
+  ✔ leaving intermission resets the room and cancels next round (6335.6995ms)
+✔ Socket.IO bomb and player lifecycle (29816.6347ms)
+✔ reload transfers rounds once and conserves total ammunition (2.3157ms)
+✔ reload uses the last reserve rounds without losing them (0.2121ms)
+✔ death prevents delayed reload completion (0.201ms)
+✔ next round clears reload state and restores equipment (0.3285ms)
+✔ leaving carrier drops a bomb that another attacker can pick up (0.6342ms)
+✔ another defender cannot take over an active defuse (0.3684ms)
+✔ a departed defuser cannot complete a defuse (0.1849ms)
+✔ defuse validates life, range and explosion deadline at completion (0.2985ms)
+✔ an ended room can return to waiting after players leave (0.2414ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30076.3343

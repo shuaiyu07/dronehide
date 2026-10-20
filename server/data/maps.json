@@ -1,0 +1,264 @@
+[
+  {
+    "id": "demo-campus",
+    "name": "校园测试场景",
+    "description": "没有真实无人机模型时使用的程序化测试场景。后续可以直接替换为 .glb 地图。",
+    "source": "procedural",
+    "modelUrl": null,
+    "thumbnailUrl": null,
+    "status": "configured",
+    "updatedAt": "2026-09-29T14:00:00.230Z",
+    "provenance": {
+      "type": "built-in",
+      "attribution": "Drone Hide Platform 程序化测试场景"
+    },
+    "config": {
+      "mapId": "demo-campus",
+      "gameMode": "hide-and-seek",
+      "spawnPoints": [
+        {
+          "id": "seeker-start",
+          "role": "seeker",
+          "position": [
+            0,
+            1.7,
+            22
+          ],
+          "rotation": [
+            0,
+            3.141592653589793,
+            0
+          ]
+        },
+        {
+          "id": "hider-start-a",
+          "role": "hider",
+          "position": [
+            -17,
+            1.7,
+            -12
+          ],
+          "rotation": [
+            0,
+            0.6,
+            0
+          ]
+        },
+        {
+          "id": "hider-start-b",
+          "role": "hider",
+          "position": [
+            18,
+            1.7,
+            -10
+          ],
+          "rotation": [
+            0,
+            -0.6,
+            0
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "id": "library-hide-zone",
+          "name": "图书馆后侧躲藏区",
+          "center": [
+            -16,
+            0,
+            -12
+          ],
+          "radius": 7,
+          "kind": "hide"
+        },
+        {
+          "id": "north-forbidden-zone",
+          "name": "施工禁区",
+          "center": [
+            0,
+            0,
+            -24
+          ],
+          "radius": 5,
+          "kind": "forbidden"
+        }
+      ],
+      "bounds": {
+        "min": [
+          -36,
+          0,
+          -30
+        ],
+        "max": [
+          36,
+          18,
+          30
+        ]
+      },
+      "rules": {
+        "prepareTime": 30,
+        "gameTime": 300,
+        "catchDistance": 2.5,
+        "maxPlayers": 8
+      }
+    }
+  },
+  {
+    "id": "map-30820c43",
+    "name": "港口广场测试地图",
+    "description": "来自 3DAssets.dev 的 CC0 港口广场场景，使用项目已有本地 GLB，用于战术爆破和无人机联机测试。",
+    "source": "glb",
+    "modelUrl": "/uploads/maps/harbour-square-payload-v1.0.0.glb",
+    "thumbnailUrl": null,
+    "status": "configured",
+    "updatedAt": "2026-10-12T12:05:59.515Z",
+    "provenance": {
+      "type": "open-source",
+      "sourceUrl": "https://3dassets.dev/assets/hero-shooter-harbour-payload-harbour-squ-d9c52d90-starter-scene",
+      "license": "CC0 1.0 Universal",
+      "attribution": "无强制署名要求；保留来源记录"
+    },
+    "config": {
+      "mapId": "map-30820c43",
+      "gameMode": "tactical-bomb",
+      "bounds": {
+        "min": [
+          -42,
+          0,
+          -34
+        ],
+        "max": [
+          42,
+          24,
+          34
+        ]
+      },
+      "rules": {
+        "prepareTime": 20,
+        "gameTime": 360,
+        "catchDistance": 2.5,
+        "maxPlayers": 12,
+        "roundsToWin": 1,
+        "bombTime": 40
+      },
+      "spawnPoints": [
+        {
+          "id": "attacker-harbour-south",
+          "role": "attacker",
+          "position": [
+            0,
+            1.7,
+            -25
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "attacker-market-west",
+          "role": "attacker",
+          "position": [
+            -21,
+            1.7,
+            7
+          ],
+          "rotation": [
+            0,
+            0.7,
+            0
+          ]
+        },
+        {
+          "id": "defender-warehouse-east",
+          "role": "defender",
+          "position": [
+            22,
+            1.7,
+            6
+          ],
+          "rotation": [
+            0,
+            -0.7,
+            0
+          ]
+        },
+        {
+          "id": "defender-quay-north",
+          "role": "defender",
+          "position": [
+            0,
+            1.7,
+            24
+          ],
+          "rotation": [
+            0,
+            3.141592653589793,
+            0
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "id": "harbour-market-hide",
+          "name": "市场摊位躲藏区",
+          "center": [
+            -16,
+            0,
+            8
+          ],
+          "radius": 9,
+          "kind": "hide"
+        },
+        {
+          "id": "harbour-warehouse-hide",
+          "name": "仓储建筑躲藏区",
+          "center": [
+            18,
+            0,
+            5
+          ],
+          "radius": 9,
+          "kind": "hide"
+        },
+        {
+          "id": "harbour-mid-control",
+          "name": "中路无人机侦察区",
+          "center": [
+            0,
+            0,
+            -4
+          ],
+          "radius": 12,
+          "kind": "safe"
+        },
+        {
+          "id": "harbour-quay-limit",
+          "name": "码头边缘禁区",
+          "center": [
+            0,
+            0,
+            29
+          ],
+          "radius": 5,
+          "kind": "forbidden"
+        }
+      ],
+      "bombSites": [
+        {
+          "id": "site-a",
+          "name": "爆破点 A · 仓储区",
+          "center": [-16, 0, 8],
+          "radius": 6
+        },
+        {
+          "id": "site-b",
+          "name": "爆破点 B · 码头区",
+          "center": [18, 0, 5],
+          "radius": 6
+        }
+      ]
+    }
+  }
+]
