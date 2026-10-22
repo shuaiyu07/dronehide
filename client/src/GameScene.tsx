@@ -463,8 +463,20 @@ export default function GameScene({
     let touchLook: { pointerId: number; x: number; y: number } | null = null;
 
     const onPointerLockChange = () => {
-      pointerLockedRef.current = document.pointerLockElement === renderer.domElement;
-      setPointerHint(pointerLockedRef.current ? "" : "点击画面进入第一人称视角");
+      const nextLocked = document.pointerLockElement === renderer.domElement;
+      const wasLocked = pointerLockedRef.current;
+      pointerLockedRef.current = nextLocked;
+      if (disposed) return;
+      setPointerHint(
+        nextLocked
+          ? ""
+          : wasLocked
+            ? "第一人称视角已释放，请点击画面重新锁定；按 ESC 可主动退出"
+            : "点击画面进入第一人称视角",
+      );
+    };
+    const onPointerLockError = () => {
+      if (!disposed) setPointerHint("浏览器未能锁定鼠标，请点击画面重试");
     };
     const onMouseMove = (event: MouseEvent) => {
       if (!pointerLockedRef.current || !canMove) return;
@@ -474,10 +486,20 @@ export default function GameScene({
       hasPendingUpdate = true;
     };
     const requestPointerLock = () => {
-      if (canMove && typeof renderer.domElement.requestPointerLock === "function") renderer.domElement.requestPointerLock();
+      if (!canMove || typeof renderer.domElement.requestPointerLock !== "function") return;
+      const request = renderer.domElement.requestPointerLock();
+      if (request && typeof request.catch === "function") {
+        request.catch(() => {
+          if (!disposed) setPointerHint("浏览器未能锁定鼠标，请点击画面重试");
+        });
+      }
     };
-    const onPointerFire = (event: PointerEvent) => {
-      if (!canMove || event.pointerType !== "mouse" || event.button !== 0 || !pointerLockedRef.current) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (!canMove || event.pointerType !== "mouse" || event.button !== 0) return;
+      if (!pointerLockedRef.current) {
+        requestPointerLock();
+        return;
+      }
       event.preventDefault();
       if (fpvStateRef.current) {
         onFpvDetonateRef.current?.();
@@ -557,9 +579,9 @@ export default function GameScene({
     window.addEventListener("keyup", onKeyUp);
     window.addEventListener("blur", clearInput);
     document.addEventListener("pointerlockchange", onPointerLockChange);
+    document.addEventListener("pointerlockerror", onPointerLockError);
     document.addEventListener("mousemove", onMouseMove);
-    renderer.domElement.addEventListener("click", requestPointerLock);
-    renderer.domElement.addEventListener("pointerdown", onPointerFire);
+    renderer.domElement.addEventListener("pointerdown", onPointerDown);
     renderer.domElement.addEventListener("pointerdown", onTouchLookStart);
     renderer.domElement.addEventListener("pointermove", onTouchLookMove);
     renderer.domElement.addEventListener("pointerup", onTouchLookEnd);
@@ -823,14 +845,17 @@ export default function GameScene({
       window.removeEventListener("keyup", onKeyUp);
       window.removeEventListener("blur", clearInput);
       document.removeEventListener("pointerlockchange", onPointerLockChange);
+      document.removeEventListener("pointerlockerror", onPointerLockError);
       document.removeEventListener("mousemove", onMouseMove);
-      renderer.domElement.removeEventListener("click", requestPointerLock);
-      renderer.domElement.removeEventListener("pointerdown", onPointerFire);
+      renderer.domElement.removeEventListener("pointerdown", onPointerDown);
       renderer.domElement.removeEventListener("pointerdown", onTouchLookStart);
       renderer.domElement.removeEventListener("pointermove", onTouchLookMove);
       renderer.domElement.removeEventListener("pointerup", onTouchLookEnd);
       renderer.domElement.removeEventListener("pointercancel", onTouchLookEnd);
-      if (document.pointerLockElement === renderer.domElement) document.exitPointerLock();
+      if (document.pointerLockElement === renderer.domElement) {
+        pointerLockedRef.current = false;
+        document.exitPointerLock();
+      }
       clearInput();
       fpvStateRef.current = null;
       scene.traverse((child) => {

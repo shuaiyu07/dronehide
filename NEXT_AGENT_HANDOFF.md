@@ -304,3 +304,10 @@ npm run check
 - 尚未实现、留作可选后续功能：阶段 4 武器/道具运行时加载、碰撞盒编辑/预览 UI、远程资源真实内容与 CORS 的运行时验证（需具体 CDN URL）。
 - 仓库约 49 项历史未提交变更属于项目所有者的工作区快照，本轮没有清理或覆盖；交接文档更新后状态项数可能变化，后续一律以实际 `git status` 为准，由项目所有者自行提交快照。
 - 后续如需新增白名单文件类型，先说明扩展名、MIME、大小限制和风险，再实现并补测试。不要借此扩展上传执行能力；本轮范围不包含 `client/src`。
+
+## 12. 2026-10-20 第一人称视角误触修复
+
+- `client/src/GameScene.tsx` 将鼠标左键入口统一为 canvas `pointerdown`：第一人称 pointer lock 已存在时执行开枪或 FPV 引爆；pointer lock 已释放时只请求重新锁定，不会把同一次左键误当作开枪。
+- 移除了独立的 canvas `click -> requestPointerLock` 路径，避免 click 与 pointerdown 竞争。监听 `pointerlockchange` 时区分首次未锁定与浏览器释放，释放后显示“第一人称视角已释放”提示；监听 `pointerlockerror` 及请求 Promise 拒绝时显示锁定失败提示。
+- 未增加计时退出逻辑；回合倒计时不会主动退出视角。组件清理时仍由 `exitPointerLock()` 释放资源，ESC/浏览器焦点变化导致的原生 pointer lock 释放会保留为可见提示。
+- 本轮只改前端视角访问层与本交接记录，不改 `server/`、`shared/` 或游戏规则逻辑。验证要求：`npm run check` 全绿、`npm test` 22/22；人工双浏览器验证覆盖连续左键、WASD+左键、静置 2 分钟、Alt+Tab、ESC，以及退出后快速连点锁定冷却。
