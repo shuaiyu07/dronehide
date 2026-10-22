@@ -11,6 +11,12 @@ server/uploads/plugins/*
 !server/uploads/plugins/.gitkeep
 !server/uploads/plugins/default-basic-pack/
 !server/uploads/plugins/default-basic-pack/**
+!server/uploads/plugins/classroom-fps-demo-pack/
+server/uploads/plugins/classroom-fps-demo-pack/*
+!server/uploads/plugins/classroom-fps-demo-pack/manifest.json
+!server/uploads/plugins/classroom-fps-demo-pack/README.md
+!server/uploads/plugins/classroom-fps-demo-pack/hider.glb
+!server/uploads/plugins/classroom-fps-demo-pack/seeker.glb
 .dev.log
 .runtime/
 tools/

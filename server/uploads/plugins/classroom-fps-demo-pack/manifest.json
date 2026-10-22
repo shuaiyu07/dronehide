@@ -1,0 +1,103 @@
+{
+  "kind": "game-resources",
+  "schemaVersion": "1.0",
+  "id": "classroom-fps-demo-pack",
+  "name": "课堂 FPS 演示资源包",
+  "version": "1.0.0",
+  "author": "Drone Hide Platform",
+  "license": "项目自制演示模型",
+  "description": "内置的课堂演示资源包，提供寻找者和躲藏者两套简化 GLB 角色模型，用于展示游戏资源接入口。",
+  "builtIn": true,
+  "sourceFormats": [
+    "procedural-box-model"
+  ],
+  "runtimeFormats": [
+    "glb"
+  ],
+  "assets": [
+    {
+      "id": "demo-seeker-model",
+      "label": "寻找者演示角色",
+      "kind": "character",
+      "path": "seeker.glb",
+      "format": "glb",
+      "tags": [
+        "player",
+        "seeker",
+        "classroom-demo"
+      ],
+      "fallback": false
+    },
+    {
+      "id": "demo-hider-model",
+      "label": "躲藏者演示角色",
+      "kind": "character",
+      "path": "hider.glb",
+      "format": "glb",
+      "tags": [
+        "player",
+        "hider",
+        "classroom-demo"
+      ],
+      "fallback": false
+    },
+    {
+      "id": "training-rifle",
+      "label": "训练步枪资源槽",
+      "kind": "prop",
+      "tags": [
+        "weapon",
+        "rifle",
+        "resource-slot"
+      ],
+      "fallback": true
+    },
+    {
+      "id": "light-armor",
+      "label": "轻型护甲资源槽",
+      "kind": "prop",
+      "tags": [
+        "armor",
+        "vest",
+        "resource-slot"
+      ],
+      "fallback": true
+    },
+    {
+      "id": "smoke-flash-kit",
+      "label": "烟雾 / 闪光投掷物资源槽",
+      "kind": "effect",
+      "tags": [
+        "grenade",
+        "smoke",
+        "flash",
+        "resource-slot"
+      ],
+      "fallback": true
+    },
+    {
+      "id": "recon-drone",
+      "label": "侦察机资源槽",
+      "kind": "prop",
+      "tags": [
+        "drone",
+        "recon",
+        "uav",
+        "resource-slot"
+      ],
+      "fallback": true
+    },
+    {
+      "id": "fpv-suicide-drone",
+      "label": "自爆穿越机资源槽",
+      "kind": "prop",
+      "tags": [
+        "drone",
+        "fpv",
+        "suicide",
+        "resource-slot"
+      ],
+      "fallback": true
+    }
+  ]
+}

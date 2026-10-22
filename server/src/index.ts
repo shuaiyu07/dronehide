@@ -33,6 +33,8 @@ const io = new Server(server, {
 const serverRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const uploadRoot = path.join(serverRoot, "uploads");
 const projectUploadRoot = path.resolve(serverRoot, "..", "uploads");
+const clientDistRoot = path.resolve(serverRoot, "..", "client", "dist");
+const clientIndexPath = path.join(clientDistRoot, "index.html");
 mkdirSync(path.join(uploadRoot, "maps"), { recursive: true });
 mkdirSync(path.join(uploadRoot, "plugins"), { recursive: true });
 
@@ -1100,6 +1102,19 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     leaveCurrentRoom();
   });
+});
+
+// Keep API, Socket.IO, and upload paths out of the SPA fallback so missing backend
+// resources retain their normal 404 responses.
+app.use(["/api", "/uploads", "/socket.io"], (_request, response) => {
+  response.sendStatus(404);
+});
+app.use(express.static(clientDistRoot));
+app.use((request, response, next) => {
+  if (request.method !== "GET" && request.method !== "HEAD") return next();
+  if (path.extname(request.path) || !request.accepts("html")) return next();
+  if (!existsSync(clientIndexPath)) return next();
+  return response.sendFile(clientIndexPath);
 });
 
 server.listen(PORT, () => {
